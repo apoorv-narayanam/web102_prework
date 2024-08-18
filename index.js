@@ -93,11 +93,11 @@ gamesCard.innerHTML = `<span>${totalGames.toLocaleString('en-US')}</span>`
  * total number of contributions, amount donated, and number of games on the site.
  * Skills used: functions, filter
 */
-
+let activeFilter='all' //takes values all,unfunded,funded
 // show only games that do not yet have enough funding
 function filterUnfundedOnly() {
     deleteChildElements(gamesContainer);
-
+    activeFilter = 'unfunded'
     // use filter() to get a list of games that have not yet met their goal
     let goalNotMet = GAMES_JSON.filter((game) =>{ return game.pledged < game.goal});
 
@@ -109,7 +109,7 @@ function filterUnfundedOnly() {
 // show only games that are fully funded
 function filterFundedOnly() {
     deleteChildElements(gamesContainer);
-
+    activeFilter='funded'
     // use filter() to get a list of games that have met or exceeded their goal
     let goalMet = GAMES_JSON.filter((game) =>{ return game.pledged >= game.goal});
 
@@ -121,7 +121,7 @@ function filterFundedOnly() {
 // show all games
 function showAllGames() {
     deleteChildElements(gamesContainer);
-
+    activeFilter='all'
     // add all games from the JSON data to the DOM
     addGamesToPage(GAMES_JSON)
 
@@ -180,3 +180,24 @@ firstGameContainer.appendChild(top1Game)
 const top2Game = document.createElement("span");
 top2Game.innerHTML=`<span>${topSecondGame.name}</span>`
 secondGameContainer.appendChild(top2Game)
+
+/****Optional Challenge: Make the website more exciting to use!
+ * 1) Implemented search bar to search the games. Searches in the set of funded, unfunded or all the games 
+ * based on user clicked activity by maintaing the history in a state variable.
+ */
+const searchInput=document.querySelector("[data-search]")
+searchInput.addEventListener("input",e=>{
+    const value=e.target.value.toLowerCase()
+    let gamesfiltered;
+    if(activeFilter=='all'){
+        gamesfiltered = GAMES_JSON.filter((game)=>{return game.name.toLowerCase().includes(value)});
+    }
+    else if(activeFilter=='unfunded'){
+        gamesfiltered =  GAMES_JSON.filter((game)=>{return game.pledged<game.goal}).filter((game2)=>{return game2.name.toLowerCase().includes(value)});
+    }
+    else{
+        gamesfiltered = GAMES_JSON.filter((game)=>{return game.pledged>=game.goal}).filter((game2)=>{return game2.name.toLowerCase().includes(value)});
+    }
+    deleteChildElements(gamesContainer);
+    addGamesToPage(gamesfiltered)
+})

@@ -2,7 +2,8 @@
 
 body {
     font-family: 'Cabin';
-    background-color: #758190;
+    color: white;
+    background-color: #001F3F;
 }
 
 #tentacles {
@@ -11,27 +12,57 @@ body {
 
 .header {
     display: flex;
-    background-color: lightblue;
+    color:white;
+    background-color: rgb(2, 47, 105);
     padding: 1%;
     align-items: center;
     margin-left: -10px;
     margin-right: -10px;
     margin-top: -10px;
 }
-
-.stats-container {
-    display: flex;
+.parent-stats-container{
+    display:flex;
     align-items: center;
 }
+.stats-container {
+    display: grid;
+    gap: 10px;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px; 
+    width: 100%; 
+    box-sizing: border-round;
+}
+.first {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
+    height: 33%; /* Container takes up 50% of the parent height */
+    color: black;
+}
 
+.second {
+    display:flex;
+    flex-direction: row;
+    grid-template-columns: repeat(2, 1fr); 
+    height: 50%; 
+    color: black;
+}
 .stats-container:hover {
     cursor: pointer;
     box-shadow: 0 0 30px lightblue;
 
 }
-
+#numbers {
+    width: 50%;
+    height:100%;
+    flex-direction: column;
+}
+#top-games {
+    width:50%;
+    height:100%;
+}
 .stats-card {
-    background-color: #a8b0bc;
+    flex-direction: column;
+    background-color: #6c9fec;
     border-radius: 7px;
     padding: 1%;
     margin: 1%;
@@ -39,10 +70,15 @@ body {
     text-align: center;
 }
 
+
 #num-contributions, #total-raised, #num-games {
     font-size: 50px;
 }
-
+.search-wrapper{
+    display:flex;
+    gap:25rem;
+    align-items: center;
+}
 #games-container {
     display: flex;
     flex-wrap: wrap;
@@ -57,7 +93,8 @@ body {
 }
 
 .game-card {
-    background-color: #FFFFFF;
+    color: black;
+    background-color: #6c9fec;
     padding: 1%;
     margin: 1%;
     width: 300px;
@@ -76,8 +113,34 @@ body {
 
 button {
     font-family: 'Cabin';
+    background-color: #6c9fec;
     border: none;
     padding: 1%;
     margin: 1%;
     border-radius: 7px;
 }
+button:hover{
+    cursor:pointer;
+    box-shadow: 0 0 30px lightblue;
+}
+#search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; 
+  }
+  
+  #search-bar {
+    width: 35%; 
+    padding: 10px; 
+    font-family: 'Cabin';
+    font-size: 16px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
+  }
+
+  input{
+    background:transparent;
+    color:#fff;
+    padding: 0 30px;
+  }
