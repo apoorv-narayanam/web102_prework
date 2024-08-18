@@ -34,8 +34,8 @@ body {
     box-sizing: border-round;
 }
 .first {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
-    height: 33%; /* Container takes up 50% of the parent height */
+    grid-template-columns: repeat(3, 1fr); 
+    height: 33%; 
     color: black;
 }
 
